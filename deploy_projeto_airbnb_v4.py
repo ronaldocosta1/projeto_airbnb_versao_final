@@ -278,7 +278,9 @@ with tab_previsao:
         except FileNotFoundError:
             st.error("Arquivo 'modelo.joblib' ou 'colunas.joblib' não encontrado.")
         except Exception as e:
-            st.error(f"Ocorreu um erro na previsão: {e}")
+            st.error("Ocorreu um erro na previsão. Veja os detalhes abaixo:")
+            st.error(f"Tipo do Erro: {type(e).__name__}")
+            st.error(f"Mensagem do Erro: {e}")
 
 # streamlit run deploy_projeto_airbnb_v4.py
 
