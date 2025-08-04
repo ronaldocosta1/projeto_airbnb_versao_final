@@ -270,9 +270,14 @@ with tab_previsao:
         valores_x = pd.DataFrame(dicionario_features, index=[0])
         try:
             modelo = joblib.load('modelo.joblib')
-            dados = pd.read_csv('dados_amostra.csv')
-            colunas = list(dados.columns)[1:-1]
-            valores_x = valores_x[colunas]
+
+            # 1. CARREGAMOS A LISTA DE COLUNAS SALVA (O GABARITO)
+            colunas_modelo = joblib.load('colunas.joblib')
+    
+            # 2. USAMOS A LISTA CORRETA PARA ALINHAR OS DADOS DE ENTRADA
+            valores_x = valores_x.reindex(columns=colunas_modelo, fill_value=0)
+    
+            # 3. AGORA A PREVISÃO VAI FUNCIONAR
             preco = modelo.predict(valores_x)
             st.success(f"Valor Previsto do Imóvel: R$ {preco[0]:.2f}")
         except FileNotFoundError:
