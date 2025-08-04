@@ -4,6 +4,8 @@ import joblib
 import folium
 
 
+st.title("TESTE DE ATUALIZAÇÃO - VERSÃO FINAL")
+
 # --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(layout="wide")
 st.title("Previsão de preço Airbnb - Rio de Janeiro")
